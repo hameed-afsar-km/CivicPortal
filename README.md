@@ -31,5 +31,42 @@ A modern **Waste Reporting Application** built using **HTML, CSS, and Vanilla Ja
 
 ### Clone the repository:
 ```bash
-git clone https://github.com/hameed-afsar-km/civic-portal-waste-logger.git
+git clone https://github.com/hameed-afsar-km/CivicPortal.git
 ```
+### Navigate into the project folder:
+```bash
+cd CivicPortal
+```
+### Open index.html directly in your browser
+`Or host using Live Server in VS Code`
+
+## 
+
+## 🎨 UI Highlights
+
+- Smooth animated gradients for Light/Dark mode
+- Toggle logs section with individual and bulk management
+- Undo last deletion for accidental log removal
+- Import/export CSV for backups and sharing
+- Interactive map with marker placement for each waste report
+
+## 📸 Screenshots 
+### Web/Mobile Responsiveness 
+
+
+## 
+### Light Mode / Dark Mode 
+
+
+## 
+### Issue Logs
+
+
+## 
+## 👨‍💻 Author  
+Hameed Afsar K M 
+## 
+
+### ⭐ _Note_ 
+_This project is part of a continuous learning process._<br> 
+_Feedback, suggestions, and improvements are always welcome._
