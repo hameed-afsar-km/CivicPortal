@@ -133,6 +133,7 @@ body.dark .log img {
 }
 
 #darkModeToggle {
+    z-index: 999;
     position: fixed;
     bottom: 22px;
     right: 22px;
@@ -156,7 +157,7 @@ body.dark .log img {
 }
 
 footer {
-    z-index: 999;
+    z-index: 998;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -189,3 +190,4 @@ body.dark footer {
     cursor: pointer;
 
 }
+
