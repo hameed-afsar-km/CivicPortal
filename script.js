@@ -1,7 +1,6 @@
 let selectedCoords = null;
 let lastDeletedLog = null;
 
-// ---------------- MAP ----------------
 const map = L.map('map').setView([13.0827, 80.2707], 13);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
@@ -12,7 +11,6 @@ map.on('click', e => {
     marker = L.marker(e.latlng).addTo(map);
 });
 
-// ---------------- FORM ----------------
 document.getElementById('wasteForm').addEventListener('submit', e => {
     e.preventDefault();
 
@@ -40,15 +38,12 @@ document.getElementById('wasteForm').addEventListener('submit', e => {
     reader.readAsDataURL(photo.files[0]);
 });
 
-// ---------------- STORAGE HELPERS ----------------
 function getLogs() {
     return JSON.parse(localStorage.getItem('wasteLogs') || '[]');
 }
 function saveLogs(logs) {
     localStorage.setItem('wasteLogs', JSON.stringify(logs));
 }
-
-// ---------------- LOGS ----------------
 function toggleLogs() {
     logContainer.style.display =
         logContainer.style.display === 'none' ? 'block' : 'none';
@@ -107,7 +102,6 @@ function clearLogs() {
     renderLogs();
 }
 
-// ---------------- CSV ----------------
 function exportCSV() {
     const logs = getLogs();
     if (!logs.length) return alert('No logs to export');
@@ -151,7 +145,6 @@ document.getElementById('csvImport').addEventListener('change', e => {
     reader.readAsText(file);
 });
 
-// ---------------- DARK MODE ----------------
 const body = document.body;
 const toggle = darkModeToggle;
 
@@ -168,3 +161,4 @@ toggle.onclick = () => {
 };
 
 renderLogs();
+
