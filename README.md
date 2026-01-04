@@ -6,7 +6,7 @@
 [![Leaflet](https://img.shields.io/badge/Leaflet-4CAF50?style=for-the-badge&logo=leaflet&logoColor=white)](https://leafletjs.com/)
 [![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
-_🌐 Live Demo: [Civic Portal - Waste Logger](#)_
+_🌐 Live Demo: [Civic Portal - Waste Logger](https://civic-portal-five.vercel.app/)_
 
 A modern **Waste Reporting Application** built using **HTML, CSS, and Vanilla JavaScript**, enabling communities to **report, track, and manage public waste** in real-time.
 
