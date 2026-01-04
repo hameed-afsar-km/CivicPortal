@@ -156,6 +156,7 @@ body.dark .log img {
 }
 
 footer {
+    z-index: 999;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -186,4 +187,5 @@ body.dark footer {
     color: #fff;
     border: none;
     cursor: pointer;
+
 }
