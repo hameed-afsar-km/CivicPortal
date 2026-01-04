@@ -1,183 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Social Waste Logger</title>
+  <title>Civic Portal - Waste Logger</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Leaflet -->
+
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <!-- Leaflet Geocoder -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-  <style>
-    body {
-      padding-bottom: 80px;
-      font-family: 'Segoe UI', sans-serif;
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    body.light {
-      background: #f4f6f8;
-      color: #2c3e50;
-    }
-
-    body.dark {
-      background: #121212;
-      color: #ecf0f1;
-    }
-
-    h2 {
-      color: inherit;
-    }
-
-    form {
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-
-    body.dark form,
-    body.dark .log {
-      background: #1e1e1e;
-      border-left-color: #27ae60;
-    }
-
-    label {
-      font-weight: 600;
-      margin-top: 10px;
-      display: block;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
-
-    body.dark input,
-    body.dark textarea {
-      background: #2c2c2c;
-      color: #ecf0f1;
-      border: 1px solid #444;
-    }
-
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: #27ae60;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    
-    button:hover {
-      opacity: 0.9;
-      transform: scale(1.02);
-      transition: 0.2s ease;
-    }
-    
-
-    #map {
-      height: 300px;
-      margin-top: 10px;
-      border-radius: 10px;
-    }
-
-    .actions {
-      margin-top: 10px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .log {
-      background: white;
-      padding: 15px;
-      margin-top: 15px;
-      border-left: 4px solid #27ae60;
-      border-radius: 5px;
-    }
-
-    .log img {
-      max-width: 100%;
-      margin-top: 10px;
-      border-radius: 5px;
-    }
-
-    body.dark .log img {
-      border: 1px solid #555;
-    }
-
-    #logContainer {
-      margin-top: 30px;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      padding: 10px;
-      color: #7f8c8d;
-      font-size: 14px;
-    }
-
-    body.dark footer {
-      color: #95a5a6;
-    }
-
-    /* Toggle Button */
-    #darkModeToggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #27ae60;
-      color: white;
-      width: 50px;
-      height: 50px;
-      font-size: 24px;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s ease;
-    }
-
-    #darkModeToggle:hover {
-      background: #27ae60;
-    }
-  
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      background: #ecf0f1;
-      padding: 10px;
-      font-size: 14px;
-      color: #2c3e50;
-    }
-    </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  
-    <header style="text-align:center; margin-bottom:20px;">
-      <h1 style="font-size:28px; color:#2c3e50;">CivicWatch - Waste Reporting Portal</h1>
-      <p style="color:#7f8c8d;">Empowering communities to report and track public waste</p>
-    </header>
-    
+
+  <header style="text-align:center; margin-bottom:20px;">
+    <h1 style="font-size:28px; color:#2c3e50;">Civic Portal - Waste Reporting Portal</h1>
+    <p style="color:#7f8c8d;">Empowering communities to report and track public waste</p>
+  </header>
+
   <form id="wasteForm">
     <label for="photo">Upload Photo:</label>
     <input type="file" id="photo" accept="image/*" required>
@@ -192,171 +32,31 @@
       <button type="submit">Submit</button>
       <button type="button" onclick="clearLogs()" style="background:#c0392b">Clear Logs</button>
       <button type="button" onclick="exportCSV()" style="background:#2980b9">Export CSV</button>
+      <input type="file" id="csvImport" accept=".csv" hidden>
+      <button type="button" onclick="document.getElementById('csvImport').click()" style="background:#16a34a">Import
+        CSV</button>
     </div>
   </form>
 
-  
-    <button onclick="toggleLogs()" style="margin:30px 0 60px 0; padding:10px 20px; background:#2c3e50; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">
-      Toggle Waste Logs
-    </button>
-    <div id="logContainer" style="display:none;">
-      <h2>Waste Logs</h2>
-    
+  <button onclick="toggleLogs()"
+    style="margin:30px 0 60px 0; padding:10px 20px; background:#2c3e50; color:white; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">
+    Toggle Waste Logs
+  </button>
+
+  <div id="logContainer" style="display:none;">
+    <h2>Waste Logs</h2>
   </div>
 
   <footer>
-    © Developed by Durga Sabarirani, Fathima, Siva Sai Kumar, Prateek Reddy, Teja
+    © Developed by <span class="footer_dev">Hameed Afsar K M</span>
   </footer>
 
-  <!-- Dark Mode Toggle Icon -->
-  <button id="darkModeToggle" title="Toggle Dark Mode">🌙</button>
 
-  <!-- Scripts -->
+  <button id="darkModeToggle">🌙</button>
+
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-
-  <script>
-    let selectedCoords = null;
-    const map = L.map('map').setView([13.0827, 80.2707], 13);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    const geocoder = L.Control.geocoder({
-      defaultMarkGeocode: false
-    }).on('markgeocode', function(e) {
-      const center = e.geocode.center;
-      map.setView(center, 16);
-      setMarker(center);
-    }).addTo(map);
-
-    let marker = null;
-    map.on('click', function(e) {
-      setMarker(e.latlng);
-    });
-
-    function setMarker(latlng) {
-      selectedCoords = latlng;
-      if (marker) map.removeLayer(marker);
-      marker = L.marker(latlng).addTo(map);
-    }
-
-    document.getElementById('wasteForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const desc = document.getElementById('desc').value;
-      const photoInput = document.getElementById('photo');
-
-      if (!selectedCoords) {
-        alert('Please select a location on the map.');
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = function() {
-        const imgData = reader.result;
-
-        const wasteData = {
-          image: imgData,
-          description: desc,
-          lat: selectedCoords.lat,
-          lng: selectedCoords.lng,
-          time: new Date().toLocaleString()
-        };
-
-        const logs = JSON.parse(localStorage.getItem('wasteLogs') || '[]');
-        logs.push(wasteData);
-        localStorage.setItem('wasteLogs', JSON.stringify(logs));
-
-        photoInput.value = '';
-        document.getElementById('desc').value = '';
-        if (marker) map.removeLayer(marker);
-        selectedCoords = null;
-        renderLogs();
-      };
-
-      if (photoInput.files[0]) {
-        reader.readAsDataURL(photoInput.files[0]);
-      }
-    });
-
-    
-    function toggleLogs() {
-      const logSection = document.getElementById('logContainer');
-      if (logSection.style.display === 'none') {
-        logSection.style.display = 'block';
-      } else {
-        logSection.style.display = 'none';
-      }
-    }
-
-function renderLogs() {
-      const logs = JSON.parse(localStorage.getItem('wasteLogs') || '[]');
-      const container = document.getElementById('logContainer');
-      container.innerHTML = '<h2>Waste Logs</h2>';
-      logs.forEach(log => {
-        const div = document.createElement('div');
-        div.className = 'log';
-        div.innerHTML = `
-          <strong>${log.time}</strong><br>
-          <em>Location:</em> (${log.lat.toFixed(4)}, ${log.lng.toFixed(4)})<br>
-          <em>Description:</em> ${log.description}<br>
-          <img src="${log.image}" alt="Waste image">
-        `;
-        container.appendChild(div);
-      });
-    }
-
-    function clearLogs() {
-      if (confirm('Are you sure you want to clear all logs?')) {
-        localStorage.removeItem('wasteLogs');
-        renderLogs();
-      }
-    }
-
-    function exportCSV() {
-      const logs = JSON.parse(localStorage.getItem('wasteLogs') || '[]');
-      if (logs.length === 0) {
-        alert('No logs to export.');
-        return;
-      }
-
-      const header = ['Timestamp', 'Description', 'Latitude', 'Longitude'];
-      const rows = logs.map(log => [log.time, `"${log.description}"`, log.lat, log.lng]);
-
-      let csv = header.join(',') + '\n' + rows.map(r => r.join(',')).join('\n');
-      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'waste_logs.csv';
-      link.click();
-    }
-
-    renderLogs();
-
-    const toggleBtn = document.getElementById('darkModeToggle');
-    const body = document.body;
-
-    function updateThemeIcon(isDark) {
-      toggleBtn.textContent = isDark ? '☀️' : '🌙';
-    }
-
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    body.classList.add(savedTheme);
-    updateThemeIcon(savedTheme === 'dark');
-
-    toggleBtn.addEventListener('click', () => {
-      const isDark = body.classList.contains('dark');
-      if (isDark) {
-        body.classList.replace('dark', 'light');
-        localStorage.setItem('theme', 'light');
-        updateThemeIcon(false);
-      } else {
-        body.classList.replace('light', 'dark');
-        localStorage.setItem('theme', 'dark');
-        updateThemeIcon(true);
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
+
 </html>
