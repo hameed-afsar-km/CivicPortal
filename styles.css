@@ -2,6 +2,15 @@
     box-sizing: border-box;
 }
 
+.web-title.light {
+    font-size: 28px;
+    color: #2c3e50;
+}
+
+.web-title.dark {
+    color: #cbd5f5;
+}
+
 body {
     padding: 20px;
     padding-bottom: 90px;
@@ -12,12 +21,12 @@ body {
 }
 
 body.light {
-    background: linear-gradient(180deg, #f8fafc, #eef2f7);
+    background: linear-gradient(30deg, #e6e7ff, #acffe6);
     color: #1f2937;
 }
 
 body.dark {
-    background: linear-gradient(180deg, #0f172a, #020617);
+    background: linear-gradient(180deg, #450e79, #010827);
     color: #e5e7eb;
 }
 
@@ -55,7 +64,6 @@ textarea {
     border-radius: 10px;
     border: 1px solid #d1d5db;
     font-size: 0.95rem;
-    transition: border 0.25s ease, background 0.25s ease;
 }
 
 input:focus,
@@ -80,12 +88,6 @@ button {
     border-radius: 12px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-button:hover {
-    transform: translateY(-1px) scale(1.02);
-    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
 }
 
 .actions {
@@ -114,7 +116,6 @@ button:hover {
     border-radius: 12px;
     border-left: 5px solid #22c55e;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-    transition: background 0.3s ease;
 }
 
 body.dark .log {
@@ -123,13 +124,21 @@ body.dark .log {
 }
 
 .log img {
-    max-width: 100%;
+    max-width: 50%;
     margin-top: 12px;
     border-radius: 10px;
 }
 
 body.dark .log img {
     border: 1px solid #334155;
+}
+
+.log button {
+    border-radius: 8px;
+    padding: 6px 12px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
 
 #darkModeToggle {
@@ -140,24 +149,19 @@ body.dark .log img {
     width: 54px;
     height: 54px;
     border-radius: 50%;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
     background: linear-gradient(135deg, #22c55e, #16a34a);
     color: white;
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.25s ease;
+    font-size: 24px;
+    line-height: 1;
 }
 
-#darkModeToggle:hover {
-    transform: translateY(-2px) scale(1.05);
-}
 
 footer {
-    z-index: 998;
+    z-index: 999;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -168,7 +172,6 @@ footer {
     justify-content: center;
     background: #ecf0f1;
     font-size: 14px;
-    color: #2c3e50;
 }
 
 body.dark footer {
@@ -182,12 +185,70 @@ body.dark footer {
     font-weight: 600;
 }
 
-.log button {
-    border-radius: 8px;
-    padding: 6px 12px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-
+.leaflet-control-attribution {
+    display: none !important;
 }
 
+.leaflet-control-geocoder {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.leaflet-control-geocoder-icon {
+    display: none !important;
+}
+
+.leaflet-control-geocoder-form {
+    display: block !important;
+}
+
+.leaflet-control-geocoder-form input {
+    width: 220px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    background: #ffffff;
+    color: #1f2937;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+body.dark .leaflet-control-geocoder-form input {
+    background: #020617;
+    color: #e5e7eb;
+}
+
+.leaflet-control-geocoder-alternatives {
+    margin-top: 6px;
+    border-radius: 12px;
+    max-height: 200px;
+    overflow-y: auto;
+    background: #ffffff;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+body.dark .leaflet-control-geocoder-alternatives {
+    background: #020617;
+}
+
+body.dark .leaflet-control-geocoder-alternatives,
+body.dark .leaflet-control-geocoder-alternatives li,
+body.dark .leaflet-control-geocoder-alternatives a,
+body.dark .leaflet-control-geocoder-alternatives span {
+    color: #f8fafc !important;
+}
+
+body.dark .leaflet-control-geocoder-alternatives li span {
+    color: #cbd5f5 !important;
+}
+
+.leaflet-control-geocoder-alternatives li {
+    padding: 10px 14px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+body.dark .leaflet-control-geocoder-alternatives li:hover {
+    background: #022c22;
+}
