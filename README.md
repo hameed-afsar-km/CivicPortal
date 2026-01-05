@@ -38,8 +38,9 @@ git clone https://github.com/hameed-afsar-km/CivicPortal.git
 ```bash
 cd CivicPortal
 ```
-### Open index.html directly in your browser
-`Or host using Live Server in VS Code`
+<br>
+
+Or `host using Live Server in VS Code`
 
 ## 
 
@@ -52,15 +53,14 @@ cd CivicPortal
 - Interactive map with marker placement for each waste report
 
 ## 📸 Screenshots 
-### Web/Mobile Responsiveness 
-
-
-## 
 ### Light Mode / Dark Mode 
+<img width="auto" height="400" alt="light" src="https://github.com/user-attachments/assets/68fd5ba7-2d1b-4721-b617-a59aef154126" />
+<img width="auto" height="400" alt="dark" src="https://github.com/user-attachments/assets/43952bde-3c53-4dca-8f84-ac86cb7ad438" />
 
 
 ## 
 ### Issue Logs
+<img width="auto" height="400" alt="image" src="https://github.com/user-attachments/assets/6da7779b-fbe9-4b3d-8cf6-0cc80b3f11d6" />
 
 
 ## 
